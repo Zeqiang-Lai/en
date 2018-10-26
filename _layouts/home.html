@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+  {% seo %}
+
+  <body>
+
+    {% include header.html %}
+
+    <main class="page-content" aria-label="Content" onclick="hideClass()">
+      <div class="wrapper">
+        <div class="home">
+          
+          <div class="home-page-content">
+            {{ content }}
+          </div>
+
+          <ul class="post-list">
+            {% for post in site.posts %}
+              <li>
+                <a class="post-preview" href="{{ post.url | relative_url }}"> 
+                  <span class="post-meta post-metadata">
+                    <div class="post-date">{{ post.date | date: "%b %-d, %Y" }}</div>
+                    <div class="tags">
+                      {% for tag in post.tags %}
+                        <div class="tag"> {{ tag }}</div>
+                      {% endfor %}
+                    </div>
+                    </span>
+                  <div class="post-description"> 
+                    <div class="post-preview-title">{{ post.title | escape }}</div>
+                    <div class="post-preview-excerpt">{{ post.excerpt }}</div>
+                  </div>
+                  {% if post.github %}
+                  <a class="post-github" href="{{ post.github }}">github</a>
+                  {% endif %}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+
+        </div>
+
+      </div>
+    </main>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
+
+
